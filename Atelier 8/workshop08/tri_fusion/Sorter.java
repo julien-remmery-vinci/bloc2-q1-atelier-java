@@ -9,6 +9,7 @@ public class Sorter {
 	private int[] table;
 	// Slice of the table to sort
 	private int start, end;
+
 	
 	public Sorter(int[] table) {
 		this(table, 0, table.length - 1);

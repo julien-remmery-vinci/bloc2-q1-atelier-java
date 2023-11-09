@@ -14,9 +14,9 @@ public class Grimoire {
     }
 
     public enum Ceremonie {
-        SYMPOSIUM_DES_ILLUSIONS_PRISMATIQUES(Incantation.FLAMBOIEMENT_ARDENT, Incantation.ECLAT_DU_PHENIX, Incantation.MURMURES_GIVRES),
-        ASSEMBLEE_DES_ONDES_FRISSONNATES(Incantation.MURMURES_GIVRES, Incantation.VORTEX_ANCESTRAL, Incantation.FLAMBOIEMENT_ARDENT),
-        RITUEL_DU_CREPUSCAL_ABYSSAL(Incantation.RESONNANCE_DES_SAGES, Incantation.MURMURES_GIVRES, Incantation.FLAMBOIEMENT_ARDENT);
+        SYMPOSIUM_DES_ILLUSIONS_PRISMATIQUES(Incantation.FLAMBOIEMENT_ARDENT, Incantation.MURMURES_GIVRES, Incantation.ECLAT_DU_PHENIX),
+        ASSEMBLEE_DES_ONDES_FRISSONNATES(Incantation.FLAMBOIEMENT_ARDENT, Incantation.MURMURES_GIVRES, Incantation.VORTEX_ANCESTRAL),
+        RITUEL_DU_CREPUSCAL_ABYSSAL(Incantation.FLAMBOIEMENT_ARDENT, Incantation.MURMURES_GIVRES, Incantation.RESONNANCE_DES_SAGES);
 
         final Incantation incantation1;
         final Incantation incantation2;

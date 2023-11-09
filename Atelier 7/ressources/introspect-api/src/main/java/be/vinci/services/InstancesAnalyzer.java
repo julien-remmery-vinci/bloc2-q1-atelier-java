@@ -55,16 +55,20 @@ public class InstancesAnalyzer {
         objectBuilder.add("type", f.getType().getSimpleName());
         try {
             System.out.println(f);
-            f.setAccessible(true);
-            if(Object.class.isAssignableFrom(f.getType()) && f.getType()!=String.class) {
-                if(!(f.get(anInstance) == null))
-                 objectBuilder.add("value", new InstancesAnalyzer(f.getType()).getFullInfo());
+            System.out.println("Test 1 : "+f.getType().getSimpleName());
+            System.out.println(Object.class.isAssignableFrom(f.getType()));
+            System.out.println(f.getType().isPrimitive());
+            if((Object.class.isAssignableFrom(f.getType()) || f.getType().isPrimitive()) && f.getType()!=String.class) {
+                System.out.println("Test 2");
+                try {
+                    if(!isFieldStatic(f) && f.getType().isPrimitive()) {
+                        f.setAccessible(true);
+                        if (!(f.get(anInstance) == null))
+                            objectBuilder.add("value", new InstancesAnalyzer(f.getType()).getFullInfo());
+                        f.setAccessible(false);
+                    }
+                } catch (IllegalAccessException ignored) {}
             }
-            /*if(f.get(anInstance).getClass().getSuperclass().equals(List.class)) {
-                InstancesAnalyzer analyzer = new InstancesAnalyzer(anInstance);
-                objectBuilder.add("value", analyzer.getFullInfo());
-                objectBuilder.add("value", "null");
-            }*/
             else objectBuilder.add("value", f.get(anInstance).toString());
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);

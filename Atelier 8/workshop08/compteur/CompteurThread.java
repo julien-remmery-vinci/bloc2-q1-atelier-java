@@ -32,7 +32,17 @@ public class CompteurThread extends Thread {
             }
         }
         System.out.println(nom+" a fini de compter");
-        if(gagnant==null) gagnant = this;
+        synchronized (CompteurThread.class){
+            if(gagnant==null) {
+                try{
+                    Thread.sleep(10);
+                }catch (InterruptedException e){
+                    System.out.println(e);
+                }
+                gagnant = this;
+            }
+        }
+
     }
 
     public static CompteurThread getGagnant() {

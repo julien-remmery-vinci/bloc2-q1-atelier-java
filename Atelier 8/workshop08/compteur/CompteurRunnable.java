@@ -24,6 +24,11 @@ public class CompteurRunnable implements Runnable {
             }
         }
         synchronized (ordreArrivee){
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                System.out.println(e);
+            }
             System.out.println(nom + " a fini de compter en position " + ++ordreArrivee);
         }
     }

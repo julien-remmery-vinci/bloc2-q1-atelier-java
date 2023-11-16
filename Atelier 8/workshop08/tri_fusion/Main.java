@@ -11,7 +11,7 @@ public class Main {
 		LocalDateTime start = LocalDateTime.now();
 		Sorter sorter = new Sorter(table);
 		sorter.sort();
-		System.out.println("\n" + ChronoUnit.MILLIS.between(start, LocalDateTime.now()));
+		System.out.println("\nTemps d'éxécution: " + ChronoUnit.MILLIS.between(start, LocalDateTime.now())+"ms");
 		// Vérification tri de la table
 		for (int i = 0; i < table.length-1; i++) {
 			if(table[i] > table[i+1]){

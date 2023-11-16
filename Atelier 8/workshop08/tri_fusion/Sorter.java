@@ -9,7 +9,7 @@ public class Sorter {
 	private int[] table;
 	// Slice of the table to sort
 	private int start, end;
-
+	private static final int nbThreads = 8;
 	
 	public Sorter(int[] table) {
 		this(table, 0, table.length - 1);
@@ -23,11 +23,10 @@ public class Sorter {
 
 	/**
 	 * Sort a table of int in ascending order
-	 * 
-	 * @param table the table to sort
+	 *
 	 */
 	public void sort() {
-		this.sort(this.start, this.end);
+		this.sort(this.start, this.end, nbThreads);
 	}
 
 	/**
@@ -36,15 +35,28 @@ public class Sorter {
 	 * @param start start index of the slice to sort
 	 * @param end end index of the slice to sort
 	 */
-	private void sort(int start, int end) {
+	private void sort(int start, int end, int nbThreads) {
 		if (end - start < 2) {
 			if (table[start] > table[end]) {
 				swap(start, end);
 			}
 		} else {
 			int milieu = start + (end - start) / 2;
-			sort(start, milieu);
-			sort(milieu + 1, end);
+			if(nbThreads>1){
+				Thread thread = new Thread(() -> sort(start, milieu, nbThreads/2));
+				Thread thread1 = new Thread(() -> sort(milieu + 1, end, nbThreads/2));
+				thread.start();
+				thread1.start();
+				try{
+					thread.join();
+					thread1.join();
+				}catch(InterruptedException e){
+
+				}
+			}else{
+				sort(start, milieu, nbThreads);
+				sort(milieu + 1, end, nbThreads);
+			}
 			this.mergeSort(start, end);
 		}
 	}

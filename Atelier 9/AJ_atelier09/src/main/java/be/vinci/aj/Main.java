@@ -1,11 +1,13 @@
 package be.vinci.aj;
 
 import domaine.QueryFactory;
+import domaine.QueryFactoryImpl;
 import server.ProxyServer;
 
 public class Main {
     public static void main(String[] args) {
-        ProxyServer proxyServer = new ProxyServer(new QueryFactory());
+        QueryFactory queryFactory = new QueryFactoryImpl();
+        ProxyServer proxyServer = new ProxyServer(queryFactory);
         proxyServer.startServer();
     }
 }
